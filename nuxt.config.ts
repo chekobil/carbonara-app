@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  modules: ["@nuxt/test-utils/module"],
   postcss: {
     plugins: {
       "postcss-preset-env": postcssPresetEnv(),
