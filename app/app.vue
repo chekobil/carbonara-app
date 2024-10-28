@@ -1,7 +1,7 @@
 <template>
   <main>
-    <div class="uno">Hola</div>
-    <NuxtWelcome />
+    <div class="uno">UNO</div>
+    <div class="dos">DOS</div>
   </main>
 </template>
 <script setup lang="ts">
@@ -15,6 +15,13 @@ main {
   border: 2px solid var(--color-secondary);
   > .uno {
     border: 3px solid var(--color-primary);
+  }
+}
+</style>
+<style lang="scss">
+main {
+  .dos {
+    border: 3px solid var(--color-accent);
   }
 }
 </style>

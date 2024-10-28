@@ -15,5 +15,8 @@
     "postcss-preset-env": "^10.0.8",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "sass": "^1.80.4"
   }
 }
