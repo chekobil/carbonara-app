@@ -1,9 +1,15 @@
 <template>
   <div id="layout">
     <header>
-      <a href="/">Home</a>
-      <a href="/stores">Stores</a>
-      <button @click="changeTheme">light/dark</button>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <li><a href="/">Home</a></li>
+          <li><a href="/stores">Stores</a></li>
+          <li>
+            <button @click="changeTheme">light/dark</button>
+          </li>
+        </ul>
+      </div>
     </header>
     <main>
       <slot />
@@ -16,6 +22,7 @@ import { ref } from "vue";
 const theme = ref("light");
 useHead({
   htmlAttrs: {
+    "data-theme": "coffe",
     class: theme,
   },
 });
