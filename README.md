@@ -2,10 +2,9 @@
 
 - compatibility with Nuxt4
 - Typescript and global types
-- Postcss preset env and global styles
+- Postcss preset env, Sass and global styles
 - explicit SSR
-
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+- Basic layout and routing
 
 ## Setup
 
