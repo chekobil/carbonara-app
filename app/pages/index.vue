@@ -2,7 +2,7 @@
   INDEX
   <div class="uno">UNO</div>
   <div class="dos">DOS</div>
-  <a href="/recipe">RECIPE</a>
+  <a class="btn btn-sm" href="/recipe">RECIPE</a>
 </template>
 <script setup lang="ts">
 const baseRecipe: IngredientList = {
