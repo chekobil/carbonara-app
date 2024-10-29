@@ -7,5 +7,6 @@ declare global {
     | "butter"
     | "oil";
   type CarbonaraIngredients = Record<CarbonaraIngredient | string, number>;
+  type CarbonaraUnits = GenericUnits;
 }
 export {};

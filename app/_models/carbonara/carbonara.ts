@@ -6,7 +6,7 @@ export const ingredients: CarbonaraIngredients = {
   butter: 500,
   oil: 100,
 };
-export const units: Record<string, string> = {
+export const units: CarbonaraUnits = {
   pasta: "gr",
   bacon: "gr",
   eggs: "units",
