@@ -39,25 +39,41 @@
         </option>
       </select>
     </div>
-    <button
-      class="btn btn-primary btn-outline btn-sm max-w-40 self-end mt-4"
-      @click="handleEmitChangeIngredients"
-    >
-      Calculate recipe
-    </button>
-    <slot />
+    <div class="join self-end mt-4">
+      <button
+        v-if="ingredientsHasChanged"
+        class="join-item btn btn-primary btn-outline btn-sm max-w-40"
+        @click="handleResetToStoredIngredients"
+      >
+        Reset
+      </button>
+      <button
+        class="join-item btn btn-primary btn-outline btn-sm max-w-40"
+        @click="handleEmitChangeIngredients"
+      >
+        Calculate recipe
+      </button>
+    </div>
+    <div :class="{ 'is-disabled': ingredientsHasChanged }">
+      <slot />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
 import type { Ref } from "vue";
+import { objectsShallowEqual } from "~/utils/objects";
 import { getSelectOptionsFromIngredients } from "~/_models/recipe/ingredientsOptions";
 import { ingredients, units } from "./carbonara";
+
+const { setUserIngredients, getUserIngredients: storedUserIngredients } =
+  useRecipeStore();
 
 const userInputMode = ref("manual"); // manual: input | auto:select
 const showErrors: Ref<boolean> = ref(false);
 const userIngredients: Ref<Record<string, number>> = ref({});
+const ingredientsHasChanged: Ref<boolean> = ref(false);
 
 const emit = defineEmits<{
   change: [value: Record<string, number>];
@@ -67,9 +83,33 @@ const formOptions = computed(() => {
   return getSelectOptionsFromIngredients(ingredients, units);
 });
 
+onMounted(() => {
+  handleResetToStoredIngredients();
+});
+
+const handleResetToStoredIngredients = () => {
+  userIngredients.value = unref(storedUserIngredients) ?? {};
+  if (userIngredients.value && Object.keys(userIngredients.value)?.length) {
+    handleEmitChangeIngredients();
+  }
+};
+
+watch(
+  [userIngredients, storedUserIngredients],
+  ([val, storedVal]) => {
+    if (val && storedVal && !objectsShallowEqual(val, storedVal)) {
+      ingredientsHasChanged.value = true;
+    }
+  },
+  { deep: true }
+);
+
 const handleEmitChangeIngredients = () => {
-  emit("change", { ...unref(userIngredients) });
+  const newIngredients = { ...unref(userIngredients) };
+  emit("change", newIngredients);
+  setUserIngredients(newIngredients);
   showErrors.value = true;
+  ingredientsHasChanged.value = false;
 };
 
 const getInputStateClass = (key: string) => {
