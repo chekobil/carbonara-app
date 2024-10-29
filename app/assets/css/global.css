@@ -1,19 +1,12 @@
 :root {
-  --color-background: beige;
-}
-:root.light {
-  --color-primary: green;
-  --color-secondary: orange;
-  --color-accent: blue;
-}
-:root.dark {
-  --color-background: gray;
-  --color-primary: aqua;
-  --color-secondary: beige;
-  --color-accent: red;
+  transition: background-color 300ms ease-in-out;
 }
 
-body {
-  background-color: var(--color-background);
-  transition: background-color 300ms ease-in-out;
+/* UTILS */
+.is-link {
+  @apply bg-primary;
+}
+.is-link:hover {
+  cursor: pointer;
+  @apply bg-base-300;
 }
