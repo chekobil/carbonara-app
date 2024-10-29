@@ -1,25 +1,37 @@
 <template>
-  <div class="card card-compact w-96 shadow-xl">
-    <figure>
-      <img
-        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-        alt="Shoes"
-      />
-    </figure>
-    <div class="card-body">
-      <h2 class="card-title"><Icon name="uil:github" size="1.4rem" />Shoes!</h2>
-      <p>If a dog chews shoes whose shoes does he choose?</p>
-      <div class="card-actions justify-end">
-        <button class="btn btn-primary">
-          Buy Now <Icon name="uil:github" size="1.4rem" />
-        </button>
-      </div>
+  <div class="stores-container">
+    <QuoteCard />
+    <h1>Stores</h1>
+    <div v-if="!storeList.length">Loading store list ...</div>
+    <div v-else>
+      <StoreSearch />
+      <StoreList :store-list="storeList" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const storeList: StoreList = [];
+const storeList: Ref<StoreList> = ref([]);
+import storesData from "~/_models/store/stores.json";
+onMounted(async () => {
+  storeList.value = storesData.slice(0, 20);
+});
 </script>
 
-<style scoped></style>
+<style lang="scss">
+.stores-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  > div {
+    width: 100%;
+  }
+  h1 {
+    font-weight: 600;
+    font-size: 2.4rem;
+  }
+}
+</style>
