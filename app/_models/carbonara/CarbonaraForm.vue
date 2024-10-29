@@ -1,12 +1,13 @@
 <template>
   <div class="form-wrapper">
+    <span @click="changeUserInputMode">*</span>
     <div
       v-for="item in formOptions"
       :key="`option-${item.name}`"
       class="form-control flex-row gap-4"
     >
       <label class="min-w-32">{{ item.name }} ({{ item.units }})</label>
-      <div v-if="userInput === 'manual'" class="input-group">
+      <div v-if="userInputMode === 'manual'" class="input-group">
         <input
           v-model="userIngredients[item.name]"
           type="text"
@@ -30,7 +31,8 @@
       <select
         v-else
         v-model="userIngredients[item.name]"
-        class="select select-sm select-bordered w-full max-w-xs"
+        class="select select-md select-bordered w-full"
+        :class="getInputStateClass(item.name)"
       >
         <option v-for="value in item.options" :value="value">
           {{ value }}
@@ -48,61 +50,56 @@
 </template>
 
 <script setup lang="ts">
-import { computed, toRef } from "vue";
+import { computed } from "vue";
 import type { Ref } from "vue";
-const userInput = ref("manual"); // manual: input | auto:select
+import { getSelectOptionsFromIngredients } from "~/_models/recipe/ingredientsOptions";
+import { ingredients, units } from "./carbonara";
+
+const userInputMode = ref("manual"); // manual: input | auto:select
+const showErrors: Ref<boolean> = ref(false);
+const userIngredients: Ref<Record<string, number>> = ref({});
+
 const emit = defineEmits<{
   change: [value: Record<string, number>];
 }>();
-const showErrors: Ref<boolean> = ref(false);
+
+const formOptions = computed(() => {
+  return getSelectOptionsFromIngredients(ingredients, units);
+});
+
 const handleEmitChangeIngredients = () => {
   emit("change", { ...unref(userIngredients) });
   showErrors.value = true;
 };
-const getOptionsForAmount = (amount: number): number[] => {
-  return [0, (2 / 4) * amount, amount, (6 / 4) * amount, (8 / 4) * amount];
-};
-interface SelectWithOptions {
-  name: string;
-  options: number[];
-}
-import { ingredients, units } from "./carbonara";
-const userIngredients: Ref<Record<string, number>> = ref({});
-
-const formOptions = computed(() => {
-  const result: SelectWithOptions[] = [];
-  const clonedIngredients = structuredClone(ingredients);
-  return Object.keys(clonedIngredients).map(
-    (key: string | CarbonaraIngredient) => {
-      const ingredientValue = clonedIngredients[key] as number;
-      const ingredientUnit = units[key] as string;
-      const options = getOptionsForAmount(ingredientValue);
-      return {
-        name: key,
-        default: ingredientValue,
-        units: ingredientUnit,
-        options,
-      };
-    }
-  );
-});
 
 const getInputStateClass = (key: string) => {
   if (!showErrors.value) return "";
+  let successClass: string = "",
+    errorClass: string = "";
+  if (userInputMode.value === "manual") {
+    successClass = "input-success";
+    errorClass = "input-error";
+  }
+  if (userInputMode.value === "auto") {
+    successClass = "select-success";
+    errorClass = "select-error";
+  }
+  if (!successClass || !errorClass) return "";
   const value = userIngredients.value[key];
-  return Boolean(value && !isNaN(Number(value)))
-    ? "input-success"
-    : "input-error";
+  return Boolean(value && !isNaN(Number(value))) ? successClass : errorClass;
+};
+
+const changeUserInputMode = () => {
+  userInputMode.value = userInputMode.value === "manual" ? "auto" : "manual";
 };
 
 const getAmountToAdd = (key: string) => {
-  return (ingredients[key] as number) / 2;
+  return (ingredients[key] as number) / 4;
 };
 
 const addAmount = (key: string) => {
   let currentValue = userIngredients.value[key];
   if (!currentValue || isNaN(Number(currentValue))) currentValue = 0;
-  // la cantidad a añadir depende de la cantidad base de la receta
   const addAmount = getAmountToAdd(key);
   userIngredients.value[key] = currentValue + addAmount;
 };
@@ -117,7 +114,7 @@ const subtractAmount = (key: string) => {
 
 <style lang="scss">
 .form-wrapper {
-  min-width: 400px;
+  min-width: var(--ingredients-form-container-width);
   padding: 0.6rem 1rem;
   display: flex;
   flex-direction: column;
@@ -133,7 +130,7 @@ const subtractAmount = (key: string) => {
       font-size: 80%;
     }
     > .select {
-      flex: 0;
+      flex: 1;
       min-width: 160px;
     }
     > .input-group {
