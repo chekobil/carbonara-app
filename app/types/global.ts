@@ -1,7 +1,6 @@
 declare global {
-  type IngredientList = {
-    test?: Number;
-  };
+  type GenericIngredients = Record<string, number>;
+
   interface Store {
     id: Number;
     name: string;
