@@ -1,6 +1,6 @@
 <template>RECIPE</template>
 <script setup lang="ts">
-const baseRecipe: IngredientList = {
+const baseRecipe: GenericIngredients = {
   test: 500,
 };
 </script>
