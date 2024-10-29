@@ -7,6 +7,12 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  modules: [
+    "@nuxt/test-utils/module",
+    "@nuxtjs/tailwindcss",
+    "@nuxt/icon",
+    "@pinia/nuxt",
+  ],
   components: [
     {
       path: "~/components",
@@ -21,7 +27,9 @@ export default defineNuxtConfig({
     autoImport: true,
     dirs: ["composables", "_models/**/use*", "_models/**/composables/*"],
   },
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/icon", "@nuxt/test-utils/module"],
+  pinia: {
+    storesDirs: ["./app/stores/**", "./app/_models/**/store.ts"],
+  },
   postcss: {
     plugins: {
       "postcss-preset-env": postcssPresetEnv(),
