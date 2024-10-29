@@ -11,3 +11,8 @@
   cursor: pointer;
   @apply bg-base-300;
 }
+
+.is-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
