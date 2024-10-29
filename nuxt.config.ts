@@ -7,6 +7,13 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  runtimeConfig: {
+    public: {
+      quoteApiBaseUrl: "https://api.api-ninjas.com/v1",
+      quoteApiToken: process.env.API_NINJA_API_TOKEN,
+      imagesApiBaseUrl: "https://picsum.photos/id",
+    },
+  },
   modules: [
     "@nuxt/test-utils/module",
     "@nuxtjs/tailwindcss",
@@ -35,7 +42,7 @@ export default defineNuxtConfig({
       "postcss-preset-env": postcssPresetEnv(),
     },
   },
-  css: ["~/assets/css/global.css"],
+  css: ["~/assets/css/global.scss"],
   vite: {
     css: {
       preprocessorOptions: {
