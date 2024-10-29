@@ -7,6 +7,20 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  components: [
+    {
+      path: "~/components",
+      extensions: [".vue"],
+    },
+    {
+      path: "~/_models",
+      extensions: [".vue"],
+    },
+  ],
+  imports: {
+    autoImport: true,
+    dirs: ["composables", "_models/**/composables/*"],
+  },
   modules: ["@nuxtjs/tailwindcss", "@nuxt/icon", "@nuxt/test-utils/module"],
   postcss: {
     plugins: {
@@ -14,4 +28,13 @@ export default defineNuxtConfig({
     },
   },
   css: ["~/assets/css/global.css"],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler",
+        },
+      },
+    },
+  },
 });
