@@ -24,19 +24,33 @@ const changeTheme = () => {
 <style lang="scss">
 body {
   font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
   #layout {
+    --header-heigth: 60px;
+    --footer-heigth: 60px;
+    --main-height: calc(100vh - var(--header-heigth) - var(--footer-heigth));
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0;
+    overflow: hidden;
+    max-height: 100vh;
     header {
       border-bottom: 1px solid gray;
+      height: var(--header-heigth);
     }
     main {
       flex: 1;
-      padding: 1rem 1.2rem;
+      max-height: var(--main-height);
+      padding: 0 1.2rem;
+      overflow: hidden;
+      > *:first-child {
+        max-height: var(--main-height);
+        overflow: auto;
+      }
     }
     footer {
+      height: var(--footer-heigth);
       padding: 1rem 1.2rem;
       border-top: 1px solid gray;
     }
