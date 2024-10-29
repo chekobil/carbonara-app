@@ -1,51 +1,44 @@
 <template>
   <div id="layout">
-    <header>
-      <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal px-1">
-          <li><a href="/">Home</a></li>
-          <li><a href="/stores">Stores</a></li>
-          <li>
-            <button @click="changeTheme">light/dark</button>
-          </li>
-        </ul>
-      </div>
-    </header>
+    <Header @change-theme="changeTheme" />
     <main>
       <slot />
     </main>
-    <footer>FOOT</footer>
+    <Footer />
   </div>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 const theme = ref("light");
+const dataTheme = ref("light");
 useHead({
   htmlAttrs: {
-    "data-theme": "coffe",
-    class: theme,
+    "data-theme": dataTheme,
   },
 });
 const changeTheme = () => {
   theme.value = theme.value === "light" ? "dark" : "light";
+  dataTheme.value = dataTheme.value === "light" ? "coffee" : "light";
 };
 </script>
 <style lang="scss">
 body {
-  font-family: "Courier New", Courier, monospace;
+  font-family: Arial, Helvetica, sans-serif;
   #layout {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
     header {
-      border: 2px solid var(--color-secondary);
+      border-bottom: 1px solid gray;
     }
     main {
+      flex: 1;
       padding: 1rem 1.2rem;
-      border: 2px solid var(--color-secondary);
     }
     footer {
-      border: 2px solid var(--color-secondary);
+      padding: 1rem 1.2rem;
+      border-top: 1px solid gray;
     }
   }
 }
