@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   ],
   imports: {
     autoImport: true,
-    dirs: ["composables", "_models/**/composables/*"],
+    dirs: ["composables", "_models/**/use*", "_models/**/composables/*"],
   },
   modules: ["@nuxtjs/tailwindcss", "@nuxt/icon", "@nuxt/test-utils/module"],
   postcss: {
