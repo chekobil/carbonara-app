@@ -8,10 +8,10 @@
         Its not possible to make a Carbonara with your ingredients
       </div>
       <div v-else class="carbonara-response-container">
-        Today, Carbonara for {{ recipeAmount }}
+        You can make a Carbonara for {{ recipeAmount }}
         <button
           class="btn btn-primary btn-outline btn-sm max-w-40 self-end"
-          :disabled="!recipeAmount"
+          :disabled="recipeIsNotInSync"
           @click="handleViewRecipe"
         >
           View recipe
@@ -22,18 +22,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref, unref } from "vue";
-import type { Ref } from "vue";
-import { useRouter } from "nuxt/app";
 const router = useRouter();
+const { setRecipeAmount } = useRecipeStore();
 const { carbonaraCalculator } = useCarbonaraCalculator();
 
 const userIngredients: Ref<CarbonaraIngredients> = ref({});
 const recipeAmount: Ref<number> = ref(-1);
 
+const recipeIsNotInSync = computed(() => {
+  return !unref(recipeAmount);
+});
+
 const handleChangeIngredients = (details: any) => {
   userIngredients.value = unref(details);
-  recipeAmount.value = carbonaraCalculator(unref(details));
+  const newRecipeAmount = carbonaraCalculator(unref(details));
+  recipeAmount.value = newRecipeAmount;
+  setRecipeAmount(newRecipeAmount);
 };
 
 const handleViewRecipe = () => {

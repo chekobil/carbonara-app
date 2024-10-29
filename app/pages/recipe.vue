@@ -1,8 +1,6 @@
-<template>RECIPE</template>
+<template>RECIPE for {{ recipeAmount }}</template>
 <script setup lang="ts">
-const baseRecipe: GenericIngredients = {
-  test: 500,
-};
+const { recipeAmount } = useRecipeStore();
 </script>
 
 <style lang="postcss"></style>
