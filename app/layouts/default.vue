@@ -30,6 +30,10 @@ body {
     --footer-heigth: 40px;
     --main-height: calc(100vh - var(--header-heigth) - var(--footer-heigth));
     --main-child-margin: 1rem;
+    --main-max-width: calc(
+      100vw - var(--main-child-margin) - var(--main-child-margin)
+    );
+    --form-container-width: min(500px, var(--main-max-width));
     min-height: 100vh;
     display: flex;
     flex-direction: column;

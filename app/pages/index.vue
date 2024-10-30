@@ -15,7 +15,7 @@
           :disabled="recipeIsNotInSync"
           @click="handleViewRecipe"
         >
-          View recipe
+          <Icon name="tabler:clipboard-list" /> View recipe
         </button>
       </div>
     </CarbonaraForm>
@@ -51,6 +51,7 @@ const handleViewRecipe = () => {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  overflow-x: hidden;
   .carbonara-response-container {
     margin-top: 1.2rem;
     min-width: 100%;

@@ -4,7 +4,7 @@
       <ul class="menu menu-horizontal px-1 w-full">
         <li>
           <a href="#" @click.prevent="handleGoTo('/')">
-            <Icon name="tabler:home" size="1.2rem" />
+            <Icon name="tabler:home" size="1.2rem" /> Home
           </a>
         </li>
         <li>
@@ -15,14 +15,14 @@
         <li class="flex-1 flex-row justify-end">
           <label class="swap swap-rotate">
             <input type="checkbox" @click="emit('change-theme', null)" />
-            <span class="swap-off">
+            <span class="swap-on">
               <Icon
                 name="material-symbols:wb-sunny-outline-rounded"
                 mode="svg"
                 size="1.4rem"
               />
             </span>
-            <span class="swap-on">
+            <span class="swap-off">
               <Icon
                 name="material-symbols:dark-mode-outline-rounded"
                 mode="svg"

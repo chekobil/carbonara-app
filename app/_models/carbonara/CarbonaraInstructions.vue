@@ -1,74 +1,58 @@
+<style lang="scss">
+.instructions-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  figure {
+    img,
+    iframe {
+      width: 100%;
+      height: auto;
+    }
+    iframe {
+      aspect-ratio: 16/9;
+    }
+  }
+}
+</style>
 <template>
-  <div class="entry-content">
-    <ol class="wp-block-list">
+  <div class="instructions-content">
+    <ol>
       <li>
-        <p>
-          <strong>Batons</strong> – Cut the guanciale into thick batons. Biting
-          through the golden brown crust into meaty bits of salty guanciale is
-          part of the awesomeness that is carbonara!
-        </p>
+        <strong>Batons</strong> – Cut the guanciale into thick batons. Biting
+        through the golden brown crust into meaty bits of salty guanciale is
+        part of the awesomeness that is carbonara!
       </li>
     </ol>
 
-    <figure class="wp-block-image size-large">
+    <figure>
       <img
         loading="lazy"
         decoding="async"
-        width="1200"
-        height="327"
         src="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1c.jpg"
         alt="How to make Carbonara"
-        class="wp-image-81059"
-        srcset="
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1c.jpg?resize=1200%2C327&amp;zoom=1    1200w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1c.jpg?resize=1200%2C327&amp;zoom=0.5   600w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1c.jpg?resize=1200%2C327&amp;zoom=0.25  300w
-        "
-        sizes="(min-width: 768px) 650px, (max-width: 320px) 93.75vw, 97.39vw"
-        data-pin-media="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1c.jpg"
-        data-pin-description="How to make Carbonara"
-        data-pin-title="Carbonara"
       />
     </figure>
 
-    <ol class="wp-block-list" start="2">
+    <ol start="2">
       <li style="counter-reset: list-counter 1">
         <p>
           <strong>Finely grate</strong> the parmigiana reggiano or pecorino. I
-          use a microplane – one of can’t-live-without
-          <a
-            href="https://www.recipetineats.com/recipetin-eats-essential-kitchenware/"
-            target="_blank"
-            rel="noreferrer noopener"
-            data-bcup-haslogintext="no"
-            >kitchenware items</a
-          >!
+          use a microplane – one of can’t-live-without kitchenware items
         </p>
       </li>
     </ol>
 
-    <figure class="wp-block-image size-large">
+    <figure>
       <img
         loading="lazy"
         decoding="async"
-        width="1200"
-        height="336"
         src="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1a.jpg"
         alt="How to make Carbonara"
-        class="wp-image-81057"
-        srcset="
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1a.jpg?resize=1200%2C336&amp;zoom=1    1200w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1a.jpg?resize=1200%2C336&amp;zoom=0.5   600w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1a.jpg?resize=1200%2C336&amp;zoom=0.25  300w
-        "
-        sizes="(min-width: 768px) 650px, (max-width: 320px) 93.75vw, 97.39vw"
-        data-pin-media="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1a.jpg"
-        data-pin-description="How to make Carbonara"
-        data-pin-title="Carbonara"
       />
     </figure>
 
-    <ol class="wp-block-list" start="3">
+    <ol start="3">
       <li style="counter-reset: list-counter 2">
         <p>
           <strong>Sauce</strong> – Whisk together the egg, cheese and pepper in
@@ -79,28 +63,16 @@
       </li>
     </ol>
 
-    <figure class="wp-block-image size-large">
+    <figure>
       <img
         loading="lazy"
         decoding="async"
-        width="1200"
-        height="326"
         src="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1b.jpg"
         alt="How to make Carbonara"
-        class="wp-image-81058"
-        srcset="
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1b.jpg?resize=1200%2C326&amp;zoom=1    1200w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1b.jpg?resize=1200%2C326&amp;zoom=0.5   600w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1b.jpg?resize=1200%2C326&amp;zoom=0.25  300w
-        "
-        sizes="(min-width: 768px) 650px, (max-width: 320px) 93.75vw, 97.39vw"
-        data-pin-media="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-1b.jpg"
-        data-pin-description="How to make Carbonara"
-        data-pin-title="Carbonara"
       />
     </figure>
 
-    <ol class="wp-block-list" start="4">
+    <ol start="4">
       <li style="counter-reset: list-counter 3">
         <p>
           <strong>Cook pasta</strong> – Bring 4 litres (4 quarts) of water to
@@ -118,28 +90,16 @@
       </li>
     </ol>
 
-    <figure class="wp-block-image size-large">
+    <figure>
       <img
         loading="lazy"
         decoding="async"
-        width="1200"
-        height="324"
         src="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2d.jpg"
         alt="How to make Carbonara"
-        class="wp-image-81064"
-        srcset="
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2d.jpg?resize=1200%2C324&amp;zoom=1    1200w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2d.jpg?resize=1200%2C324&amp;zoom=0.5   600w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2d.jpg?resize=1200%2C324&amp;zoom=0.25  300w
-        "
-        sizes="(min-width: 768px) 650px, (max-width: 320px) 93.75vw, 97.39vw"
-        data-pin-media="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2d.jpg"
-        data-pin-description="How to make Carbonara"
-        data-pin-title="Carbonara"
       />
     </figure>
 
-    <ol class="wp-block-list" start="6">
+    <ol start="6">
       <li style="counter-reset: list-counter 5">
         <p>
           <strong>Cook guanciale</strong> until golden while the pasta is
@@ -157,28 +117,16 @@
       </li>
     </ol>
 
-    <figure class="wp-block-image size-large">
+    <figure>
       <img
         loading="lazy"
         decoding="async"
-        width="1200"
-        height="335"
         src="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2a.jpg"
         alt="How to make Carbonara"
-        class="wp-image-81061"
-        srcset="
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2a.jpg?resize=1200%2C335&amp;zoom=1    1200w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2a.jpg?resize=1200%2C335&amp;zoom=0.5   600w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2a.jpg?resize=1200%2C335&amp;zoom=0.25  300w
-        "
-        sizes="(min-width: 768px) 650px, (max-width: 320px) 93.75vw, 97.39vw"
-        data-pin-media="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2a.jpg"
-        data-pin-description="How to make Carbonara"
-        data-pin-title="Carbonara"
       />
     </figure>
 
-    <ol class="wp-block-list" start="8">
+    <ol start="8">
       <li style="counter-reset: list-counter 7">
         <p>
           <strong>Transfer into sauce bowl – </strong>Tip the hot pasta into the
@@ -192,28 +140,16 @@
       </li>
     </ol>
 
-    <figure class="wp-block-image size-large">
+    <figure>
       <img
         loading="lazy"
         decoding="async"
-        width="1200"
-        height="331"
         src="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2b.jpg"
         alt="How to make Carbonara"
-        class="wp-image-81062"
-        srcset="
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2b.jpg?resize=1200%2C331&amp;zoom=1    1200w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2b.jpg?resize=1200%2C331&amp;zoom=0.5   600w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2b.jpg?resize=1200%2C331&amp;zoom=0.25  300w
-        "
-        sizes="(min-width: 768px) 650px, (max-width: 320px) 93.75vw, 97.39vw"
-        data-pin-media="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2b.jpg"
-        data-pin-description="How to make Carbonara"
-        data-pin-title="Carbonara"
       />
     </figure>
 
-    <ol class="wp-block-list" start="10">
+    <ol start="10">
       <li style="counter-reset: list-counter 9">
         <p>
           <strong>Mix vigorously </strong>with the handle of a wooden spoon,
@@ -229,28 +165,16 @@
       </li>
     </ol>
 
-    <figure class="wp-block-image size-large">
+    <figure>
       <img
         loading="lazy"
         decoding="async"
-        width="1200"
-        height="387"
         src="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2c.jpg"
         alt="How to make Carbonara"
-        class="wp-image-81063"
-        srcset="
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2c.jpg?resize=1200%2C387&amp;zoom=1    1200w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2c.jpg?resize=1200%2C387&amp;zoom=0.5   600w,
-          https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2c.jpg?resize=1200%2C387&amp;zoom=0.25  300w
-        "
-        sizes="(min-width: 768px) 650px, (max-width: 320px) 93.75vw, 97.39vw"
-        data-pin-media="https://www.recipetineats.com/tachyon/2023/01/How-to-make-Carbonara-2c.jpg"
-        data-pin-description="How to make Carbonara"
-        data-pin-title="Carbonara"
       />
     </figure>
 
-    <ol class="wp-block-list" start="11">
+    <ol start="11">
       <li style="counter-reset: list-counter 10">
         <p>
           <strong>Serve immediately in warm bowls.</strong> Pasta waits for no
@@ -268,45 +192,21 @@
       </li>
     </ol>
 
-    <figure class="wp-block-image size-large">
+    <figure>
       <img
         loading="lazy"
         decoding="async"
-        width="900"
-        height="1125"
         src="https://www.recipetineats.com/tachyon/2023/01/Picking-up-carbonara-pasta.jpg"
         alt="Carbonara being served"
-        class="wp-image-81128"
-        srcset="
-          https://www.recipetineats.com/tachyon/2023/01/Picking-up-carbonara-pasta.jpg?resize=900%2C1125&amp;zoom=1    900w,
-          https://www.recipetineats.com/tachyon/2023/01/Picking-up-carbonara-pasta.jpg?resize=900%2C1125&amp;zoom=0.5  450w,
-          https://www.recipetineats.com/tachyon/2023/01/Picking-up-carbonara-pasta.jpg?resize=900%2C1125&amp;zoom=0.25 225w
-        "
-        sizes="(min-width: 768px) 650px, (max-width: 320px) 93.75vw, 97.39vw"
-        data-pin-media="https://www.recipetineats.com/tachyon/2023/01/Picking-up-carbonara-pasta.jpg"
-        data-pin-description="Carbonara being served"
-        data-pin-title="Carbonara"
       />
     </figure>
 
-    <figure class="wp-block-image size-large">
+    <figure>
       <img
         loading="lazy"
         decoding="async"
-        width="900"
-        height="1125"
         src="https://www.recipetineats.com/tachyon/2023/01/Carbonara_0.jpg"
         alt="Carbonara ready to be eaten"
-        class="wp-image-81066"
-        srcset="
-          https://www.recipetineats.com/tachyon/2023/01/Carbonara_0.jpg?resize=900%2C1125&amp;zoom=1    900w,
-          https://www.recipetineats.com/tachyon/2023/01/Carbonara_0.jpg?resize=900%2C1125&amp;zoom=0.5  450w,
-          https://www.recipetineats.com/tachyon/2023/01/Carbonara_0.jpg?resize=900%2C1125&amp;zoom=0.25 225w
-        "
-        sizes="(min-width: 768px) 650px, (max-width: 320px) 93.75vw, 97.39vw"
-        data-pin-media="https://www.recipetineats.com/tachyon/2023/01/Carbonara_0.jpg"
-        data-pin-description="Carbonara ready to be eaten"
-        data-pin-title="Carbonara"
       />
     </figure>
 
@@ -326,31 +226,16 @@
       <strong><em>– Nagi x</em></strong>
     </p>
 
-    <hr class="wp-block-separator has-alpha-channel-opacity" />
+    <h2>Watch how to make it</h2>
 
-    <h2 class="has-text-align-center wp-block-heading" id="jump-watch">
-      Watch how to make it
-    </h2>
-
-    <figure
-      class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"
-    >
-      <div class="wp-block-embed__wrapper">
-        <span
-          class="embed-youtube"
-          style="text-align: center; display: block"
-          tabindex="0"
+    <figure>
+      <div>
+        <span style="text-align: center; display: block" tabindex="0"
           ><iframe
             loading="lazy"
-            class="youtube-player"
-            width="640"
-            height="360"
             src="https://www.youtube.com/embed/jlcFwYwiuwY?version=3&amp;rel=0&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=1&amp;fs=1&amp;hl=en-US&amp;autohide=2&amp;wmode=transparent"
             allowfullscreen="true"
             style="border: 0"
-            sandbox="allow-scripts allow-same-origin allow-popups allow-presentation allow-popups-to-escape-sandbox"
-            data-pin-description="Carbonara"
-            data-pin-title="Carbonara"
           ></iframe
         ></span>
       </div>

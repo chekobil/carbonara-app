@@ -7,13 +7,13 @@
   >
     <div class="hero-overlay bg-opacity-60"></div>
     <div class="hero-content text-neutral-content text-center">
-      <div class="px-20">
+      <div class="quote-content">
         <div v-if="quoteError">Error getting quote</div>
         <div v-else-if="!Object.keys(quote)?.length">Loading quote...</div>
-        <div v-else class="text-xl font-bold">
+        <div v-else class="quote-text">
           {{ quote.quote }}
-          <div class="text-sm font-bold mt-6">{{ quote.author }}</div>
         </div>
+        <div class="quote-author">{{ quote.author }}</div>
       </div>
     </div>
   </div>
@@ -44,4 +44,21 @@ const quoteError = computed(() => {
 });
 </script>
 
-<style scoped></style>
+<style lang="scss">
+.quote-content {
+  padding: 0 0;
+  width: min(700px, 80vw);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  .quote-text {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .quote-author {
+    font-size: var(--font-size-sm);
+    font-weight: 100;
+  }
+}
+</style>

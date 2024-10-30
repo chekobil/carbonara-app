@@ -17,6 +17,7 @@ const props = defineProps<{
 <style lang="scss">
 .stores-list {
   min-width: 100%;
+  max-width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, 95%);
   justify-content: center;

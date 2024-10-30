@@ -4,8 +4,10 @@
     <div class="recipe-container">
       <div class="recipe-item recipe-ingredients bg-base-200">
         <h3>
-          Ingredients <br /><small>{{ recipeAmount }} servings</small>
+          <Icon name="tabler:clipboard-list" />
+          Ingredients
         </h3>
+        <h5><Icon name="tabler:user" /> {{ recipeAmount }} servings</h5>
         <ul class="ingredients-list">
           <li v-for="name in ingredientsNames" :key="name">
             <span>{{ name }}</span>
@@ -23,7 +25,10 @@
         </button>
       </div>
       <div class="recipe-item recipe-instructions">
-        <h3>Instructions</h3>
+        <h3>
+          <Icon name="tabler:cooker" />
+          Instructions
+        </h3>
         <CarbonaraInstructions />
       </div>
     </div>
@@ -55,18 +60,17 @@ const handleGoToHome = () => {
 .recipe-container {
   padding: 1rem 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 1rem;
   justify-content: center;
   align-items: flex-start;
   .recipe-item {
+    width: 100%;
     padding: 1rem 1.4rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     &.recipe-ingredients {
-      position: sticky;
-      top: 0;
       padding: 2rem 1.4rem;
       flex: 1;
       align-items: center;
@@ -78,6 +82,9 @@ const handleGoToHome = () => {
     h3 {
       font-size: 1.4rem;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
     .ingredients-list {
       > li {
@@ -85,11 +92,16 @@ const handleGoToHome = () => {
         gap: 0.5rem;
       }
     }
-
-    .instructions-list {
-      > li {
-        display: flex;
-        gap: 0.5rem;
+  }
+  @media (min-width: 700px) {
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-start;
+    .recipe-item {
+      &.recipe-ingredients {
+        position: sticky;
+        top: 0;
       }
     }
   }

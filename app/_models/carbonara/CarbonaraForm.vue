@@ -1,32 +1,33 @@
 <template>
   <div class="form-wrapper">
-    <span data-test-id="change-input-mode" @click="changeUserInputMode">*</span>
     <div
       v-for="item in formOptions"
       :key="`option-${item.name}`"
-      class="form-control flex-row gap-4"
+      class="form-control"
     >
-      <label class="min-w-32">{{ item.name }} ({{ item.units }})</label>
+      <label>{{ item.name }} </label>
       <div v-if="userInputMode === 'manual'" class="input-group">
         <input
           v-model="userIngredients[item.name]"
           type="text"
           :placeholder="item.units"
-          class="input input-bordered w-full max-w-xs"
+          class="input input-bordered flex items-center w-full"
           :class="getInputStateClass(item.name)"
         />
-        <Icon
-          name="mdi:add-circle-outline"
-          size="1.5rem"
-          class="is-link"
-          @click="addAmount(item.name)"
-        />
-        <Icon
-          name="mdi:minus-circle-outline"
-          size="1.5rem"
-          class="is-link"
-          @click="subtractAmount(item.name)"
-        />
+        <div class="icon-group">
+          <Icon
+            name="mdi:add-circle-outline"
+            size="1.5rem"
+            class="is-link"
+            @click="addAmount(item.name)"
+          />
+          <Icon
+            name="mdi:minus-circle-outline"
+            size="1.5rem"
+            class="is-link"
+            @click="subtractAmount(item.name)"
+          />
+        </div>
       </div>
       <select
         v-else
@@ -45,6 +46,7 @@
         class="join-item btn btn-primary btn-outline btn-sm max-w-40"
         @click="handleResetToStoredIngredients"
       >
+        <Icon name="tabler:restore" />
         Reset
       </button>
       <button
@@ -53,12 +55,13 @@
         :class="{ 'is-disabled': !ingredientsHasChanged }"
         @click="handleEmitChangeIngredients"
       >
-        Calculate recipe
+        <Icon name="tabler:calculator" />Calculate recipe
       </button>
     </div>
     <div :class="{ 'is-disabled': ingredientsHasChanged }">
       <slot />
     </div>
+    <span data-test-id="change-input-mode" @click="changeUserInputMode">*</span>
   </div>
 </template>
 
@@ -161,29 +164,48 @@ const subtractAmount = (key: string) => {
 
 <style lang="scss">
 .form-wrapper {
-  min-width: var(--ingredients-form-container-width);
-  padding: 0.6rem 1rem;
+  margin-top: 1rem;
+  min-width: var(--form-container-width);
+  padding: 0.6rem 1.4rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 0.4rem;
+  justify-content: flex-start;
+  gap: 0.6rem;
+  overflow-x: hidden;
   > .form-control {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.6rem;
-    > label {
+    @media (min-width: 500px) {
+      gap: 1.2rem;
+    }
+    label {
       flex: 1;
-      font-size: 80%;
+      font-size: 90%;
+      font-weight: 300;
+      width: max-content;
+      text-transform: capitalize;
     }
     > .select {
       flex: 1;
       min-width: 160px;
     }
     > .input-group {
+      flex: 3;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.6rem;
+      .icon-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        @media (min-width: 500px) {
+          flex-direction: row;
+          align-items: center;
+        }
+      }
     }
   }
 }
