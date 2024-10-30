@@ -1,7 +1,8 @@
 let dataLength: number = 0;
 export function useFetchStores() {
   const fetchStores = async (page: number) => {
-    const itemsPerPage = 50;
+    console.info("fetchStores, page", page);
+    const itemsPerPage = 30;
     const sliceStart = (page - 1) * itemsPerPage;
     const sliceEnd = page * itemsPerPage;
     let data: {
