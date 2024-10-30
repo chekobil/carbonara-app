@@ -1,6 +1,6 @@
 <template>
   <div class="form-wrapper">
-    <span @click="changeUserInputMode">*</span>
+    <span data-test-id="change-input-mode" @click="changeUserInputMode">*</span>
     <div
       v-for="item in formOptions"
       :key="`option-${item.name}`"
@@ -48,7 +48,9 @@
         Reset
       </button>
       <button
+        data-test-id="button-calculate-recipe"
         class="join-item btn btn-primary btn-outline btn-sm max-w-40"
+        :class="{ 'is-disabled': !ingredientsHasChanged }"
         @click="handleEmitChangeIngredients"
       >
         Calculate recipe
@@ -97,6 +99,9 @@ const handleResetToStoredIngredients = () => {
 watch(
   [userIngredients, storedUserIngredients],
   ([val, storedVal]) => {
+    if (val && Object.keys(val)?.length) {
+      ingredientsHasChanged.value = true;
+    }
     if (val && storedVal && !objectsShallowEqual(val, storedVal)) {
       ingredientsHasChanged.value = true;
     }
@@ -109,7 +114,9 @@ const handleEmitChangeIngredients = () => {
   emit("change", newIngredients);
   setUserIngredients(newIngredients);
   showErrors.value = true;
-  ingredientsHasChanged.value = false;
+  setTimeout(() => {
+    ingredientsHasChanged.value = false;
+  }, 1);
 };
 
 const getInputStateClass = (key: string) => {
