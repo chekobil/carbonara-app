@@ -43,7 +43,6 @@ export default defineNuxtConfig({
       "postcss-preset-env": postcssPresetEnv(),
     },
   },
-  css: ["~/assets/css/global.scss"],
   vite: {
     css: {
       preprocessorOptions: {
