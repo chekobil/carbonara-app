@@ -1,18 +1,27 @@
 :root {
+  overflow: hidden;
+  scroll-behavior: smooth;
   transition: background-color 300ms ease-in-out;
   --ingredients-form-container-width: 500px;
+  /* font-size */
+  --font-size-2xl: 1.5rem;
+  --font-size-xl: 1.25rem;
+  --font-size-lg: 1.125rem;
+  --font-size-base: 1rem;
+  --font-size-md: var(--font-size-base);
+  --font-size-sm: 0.875rem;
+  --font-size-xs: 0.75rem;
 }
 
 /* UTILS */
 .is-link {
   @apply bg-primary;
+  &:hover {
+    cursor: pointer;
+    @apply bg-base-300;
+  }
 }
-.is-link:hover {
-  cursor: pointer;
-  @apply bg-base-300;
-}
-
 .is-disabled {
-  opacity: 0.5;
+  opacity: 0.3;
   pointer-events: none;
 }
