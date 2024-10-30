@@ -171,7 +171,6 @@ const subtractAmount = (key: string) => {
   flex-direction: column;
   justify-content: flex-start;
   gap: 0.6rem;
-  overflow-x: hidden;
   > .form-control {
     display: flex;
     flex-direction: row;
