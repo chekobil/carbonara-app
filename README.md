@@ -12,6 +12,10 @@
 
 Preview the project [at Vercel](https://carbonara-app-chekobils-projects.vercel.app/)
 
+## Documentation
+
+Read the documentation [here](https://kobino.notion.site/Carbonara-app-12d51469461180539df1e05511af94c8)
+
 ## Setup
 
 Clone the repo and make sure to install dependencies:
