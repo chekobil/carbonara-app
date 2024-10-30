@@ -2,6 +2,8 @@
   <div class="store-item card card-compact w-full shadow-xl">
     <figure>
       <img
+        loading="lazy"
+        decoding="async"
         :src="`https://picsum.photos/id/${randomNumber(1, 100)}/200/120`"
         alt="Shoes"
       />
