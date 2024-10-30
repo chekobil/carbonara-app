@@ -42,6 +42,12 @@ Unit tests can be run with the next command
 bun test:unit
 ```
 
+Components unit tests can be run with the next command
+
+```bash
+bun test:components
+```
+
 ## Production
 
 Locally preview production build:
