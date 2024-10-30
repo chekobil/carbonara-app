@@ -1,9 +1,6 @@
 <template>
-  <span v-if="quoteError">Error getting quote</span>
-  <span v-else-if="!Object.keys(quote)?.length">Loading quote...</span>
   <div
-    v-else
-    class="hero min-h-80"
+    class="hero min-h-60"
     style="
       background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);
     "
@@ -11,10 +8,12 @@
     <div class="hero-overlay bg-opacity-60"></div>
     <div class="hero-content text-neutral-content text-center">
       <div class="px-20">
-        <p class="text-xl font-bold">
+        <div v-if="quoteError">Error getting quote</div>
+        <div v-else-if="!Object.keys(quote)?.length">Loading quote...</div>
+        <div v-else class="text-xl font-bold">
           {{ quote.quote }}
-        </p>
-        <div class="text-sm font-bold mt-6">{{ quote.author }}</div>
+          <div class="text-sm font-bold mt-6">{{ quote.author }}</div>
+        </div>
       </div>
     </div>
   </div>
