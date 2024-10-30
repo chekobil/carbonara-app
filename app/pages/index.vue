@@ -1,5 +1,6 @@
 <template>
-  <div class="carbonara-form-container">
+  <section class="carbonara-form-container">
+    <CarbonaraHeader />
     <CarbonaraForm @change="handleChangeIngredients">
       <div v-if="recipeAmount < 0" class="carbonara-response-container">
         Add some ingredients
@@ -18,7 +19,7 @@
         </button>
       </div>
     </CarbonaraForm>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -49,7 +50,7 @@ const handleViewRecipe = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   .carbonara-response-container {
     margin-top: 1.2rem;
     min-width: 100%;
