@@ -6,6 +6,7 @@
       :key="`store-${store.id}`"
     />
   </div>
+  <!-- TODO. Fill with fake elements to have a "real" scroll -->
 </template>
 
 <script setup lang="ts">
