@@ -8,6 +8,8 @@
     "dev:rm": "rm -rf .nuxt && nuxt dev",
     "test:unit": "vitest unit",
     "test:components": "vitest components",
+    "cy:open": "cypress open",
+    "test:e2e:firefox": "cypress run --browser firefox",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -26,6 +28,7 @@
     "@vue/test-utils": "^2.4.6",
     "@vueuse/core": "^11.1.0",
     "@vueuse/nuxt": "^11.1.0",
+    "cypress": "^13.15.1",
     "daisyui": "^4.12.13",
     "happy-dom": "^15.7.4",
     "postcss-preset-env": "^10.0.8",
