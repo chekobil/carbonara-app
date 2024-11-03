@@ -42,7 +42,7 @@
     </div>
     <div class="join self-end mt-4">
       <button
-        v-if="ingredientsHasChanged"
+        v-if="canResetForm"
         class="join-item btn btn-primary btn-outline btn-sm max-w-40"
         @click="handleResetToStoredIngredients"
       >
@@ -52,13 +52,13 @@
       <button
         data-test-id="button-calculate-recipe"
         class="join-item btn btn-primary btn-outline btn-sm max-w-40"
-        :class="{ 'is-disabled': !ingredientsHasChanged }"
+        :class="{ 'is-disabled': !canCalculateForm }"
         @click="handleEmitChangeIngredients"
       >
         <Icon name="tabler:calculator" />Calculate recipe
       </button>
     </div>
-    <div :class="{ 'is-disabled': ingredientsHasChanged }">
+    <div :class="{ 'is-disabled': !canViewRecipe }">
       <slot />
     </div>
     <span data-test-id="change-input-mode" @click="changeUserInputMode">*</span>
@@ -78,7 +78,36 @@ const { setUserIngredients, getUserIngredients: storedUserIngredients } =
 const userInputMode = ref("manual"); // manual: input | auto:select
 const showErrors: Ref<boolean> = ref(false);
 const userIngredients: Ref<Record<string, number>> = ref({});
-const ingredientsHasChanged: Ref<boolean> = ref(false);
+
+const status = computed(() => {
+  const userVal = userIngredients.value;
+  const storedVal = storedUserIngredients.value;
+  if (!userVal || !Object.keys(userVal)?.length) {
+    return "notvalid";
+  }
+  if (
+    Object.values(userVal)?.length !== Object.keys(ingredients).length ||
+    !Object.values(userVal).every((val) => Boolean(val))
+  ) {
+    return "notvalid";
+  }
+  if (!storedVal || !Object.keys(storedVal)?.length) {
+    return "changed-initial";
+  }
+  return objectsShallowEqual(userVal, storedVal) ? "calculated" : "changed";
+});
+const canViewRecipe = computed(() => {
+  return status.value === "calculated";
+});
+const canCalculateForm = computed(() => {
+  return status.value.includes("changed");
+});
+const canResetForm = computed(() => {
+  return status.value === "changed";
+});
+const formIsInvalid = computed(() => {
+  return status.value === "notvalid";
+});
 
 const emit = defineEmits<{
   change: [value: Record<string, number>];
@@ -99,27 +128,12 @@ const handleResetToStoredIngredients = () => {
   }
 };
 
-watch(
-  [userIngredients, storedUserIngredients],
-  ([val, storedVal]) => {
-    if (val && Object.keys(val)?.length) {
-      ingredientsHasChanged.value = true;
-    }
-    if (val && storedVal && !objectsShallowEqual(val, storedVal)) {
-      ingredientsHasChanged.value = true;
-    }
-  },
-  { deep: true }
-);
-
 const handleEmitChangeIngredients = () => {
+  // VALIDATION. Si hay errores, no mandes el formulario
+  showErrors.value = true;
   const newIngredients = { ...unref(userIngredients) };
   emit("change", newIngredients);
   setUserIngredients(newIngredients);
-  showErrors.value = true;
-  setTimeout(() => {
-    ingredientsHasChanged.value = false;
-  }, 1);
 };
 
 const getInputStateClass = (key: string) => {
