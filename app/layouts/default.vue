@@ -28,18 +28,18 @@ body {
   #layout {
     --header-heigth: 60px;
     --footer-heigth: 40px;
-    --main-height: calc(100vh - var(--header-heigth) - var(--footer-heigth));
+    --main-height: calc(100dvh - var(--header-heigth) - var(--footer-heigth));
     --main-child-margin: 1rem;
     --main-max-width: calc(
       100vw - var(--main-child-margin) - var(--main-child-margin)
     );
     --form-container-width: min(500px, var(--main-max-width));
-    min-height: 100vh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     gap: 0;
-    overflow: hidden;
-    max-height: 100vh;
     header {
       flex: 0;
       border-bottom: 1px solid gray;
@@ -47,24 +47,24 @@ body {
     }
     main {
       flex: 1;
-      max-height: var(--main-height);
+      // min-height: var(--main-height);
       padding: 0 var(--main-child-margin);
       > section:first-child {
-        max-height: calc(
-          var(--main-height) - var(--main-child-margin) -
-            var(--main-child-margin)
-        );
+        // max-height: calc(
+        //   var(--main-height) - var(--main-child-margin) -
+        //     var(--main-child-margin)
+        // );
         margin-top: var(--main-child-margin);
-        overflow: auto;
+        // overflow: auto;
       }
     }
     footer {
       flex: 1;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       min-height: var(--footer-heigth);
       border-top: 1px solid oklch(var(--b3));
-      padding: 0 1.2rem;
+      padding: 0.6rem 1.2rem;
       background-color: oklch(var(--b2));
     }
   }
