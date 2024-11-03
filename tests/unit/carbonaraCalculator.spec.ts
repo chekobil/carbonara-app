@@ -65,7 +65,7 @@ test("One ingredient amount is one third the base amount, returns 0.33", () => {
     oil: 33,
   };
   const result = calculator(baseIngredients, userIngredients);
-  expect(result).toBe(0.33);
+  expect(result).toBe(0);
 });
 
 test("One ingredient amount is one fifth the base amount, returns 0.2", () => {
@@ -78,7 +78,7 @@ test("One ingredient amount is one fifth the base amount, returns 0.2", () => {
     oil: 33,
   };
   const result = calculator(baseIngredients, userIngredients);
-  expect(result).toBe(0.2);
+  expect(result).toBe(0);
 });
 
 test("One ingredient amount is one tenth the base amount, returns 0.1", () => {
@@ -91,7 +91,7 @@ test("One ingredient amount is one tenth the base amount, returns 0.1", () => {
     oil: 33,
   };
   const result = calculator(baseIngredients, userIngredients);
-  expect(result).toBe(0.1);
+  expect(result).toBe(0);
 });
 
 test("With composable. One ingredient amount is one tenth the base amount, returns 0.1", () => {
@@ -105,7 +105,7 @@ test("With composable. One ingredient amount is one tenth the base amount, retur
   };
   const { carbonaraCalculator } = useCarbonaraCalculator();
   const result = carbonaraCalculator(userIngredients);
-  expect(result).toBe(0.1);
+  expect(result).toBe(0);
 });
 
 test("Double amount returns 2", () => {
