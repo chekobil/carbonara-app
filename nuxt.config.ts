@@ -7,6 +7,10 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  devServer: {
+    port: 3000,
+    host: "0.0.0.0",
+  },
   runtimeConfig: {
     public: {
       quoteApiBaseUrl: "https://api.api-ninjas.com/v1",
