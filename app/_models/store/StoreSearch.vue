@@ -2,6 +2,7 @@
   <div class="store-search-container">
     <input
       type="text"
+      data-test-id="input-search-stores"
       v-model="inputValue"
       placeholder="Search store"
       class="input input-bordered w-full max-w-xs"
