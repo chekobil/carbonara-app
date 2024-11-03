@@ -48,6 +48,16 @@ Components unit tests can be run with the next command
 bun test:components
 ```
 
+E2E tests can be run with the next command
+Be sure to have the app running in DEV mode.
+
+```bash
+# run tests in headless mode
+bun test:e2e:firefox
+# or use the visual mode from Cypress
+bun cy:open
+```
+
 ## Production
 
 Locally preview production build:
