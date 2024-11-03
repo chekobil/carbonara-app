@@ -5,61 +5,62 @@
     <div v-else class="store-list-container">
       <div class="title-group">
         <h1>Stores</h1>
-        <StoreSearch @change="handleSearchStore" />
+        <StoreSearch @change="handleGetNewSearch" />
       </div>
-      <StoreList :store-list="filteredStoreList || storeList" />
+      <div class="search-results-count">
+        <small
+          >Loaded {{ storeList?.length ?? 0 }}/{{ storesTotal ?? 0 }}
+          <span v-if="searchQuery">(filtered by {{ searchQuery }})</span></small
+        >
+      </div>
+      <StoreList :store-list="storeList" />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { useInfiniteScroll, useDebounceFn } from "@vueuse/core";
 const { fetchStores } = useFetchStores();
+const { findIntersectingElement } = useStoresIntersection();
 
 const storeList: Ref<StoreList> = ref([]);
+const storesTotal: Ref<number> = ref(0);
 const filteredStoreList: Ref<StoreList | null> = ref(null);
 const currentPage: Ref<number> = ref(1);
 const storeListElm: Ref<HTMLElement | null> = ref(null);
 const searchQuery: Ref<string> = ref("");
 
-const { reset } = useInfiniteScroll(
-  storeListElm,
-  () => {
-    const debounceGetMore = useDebounceFn(() => {
-      getMoreStores();
-    }, 400);
-    debounceGetMore();
-  },
-  { direction: "bottom", distance: 200, interval: 400 }
-);
+const listIsInLastPage = computed(() => {
+  return unref(storeList)?.length < unref(storesTotal);
+});
 
 onMounted(async () => {
-  getStores(currentPage.value);
+  getStores(1);
 });
 
 const getStores = async (page: number) => {
-  const res = await fetchStores(page);
-  storeList.value = res;
+  currentPage.value = page;
+  const { data, total } = await fetchStores(page, unref(searchQuery));
+  storeList.value = data;
+  storesTotal.value = total;
+  findIntersectingElement(storeListElm, ".store-item", getMoreStores);
 };
 const getMoreStores = async () => {
-  currentPage.value++;
-  const res = await fetchStores(currentPage.value);
-  storeList.value = [...storeList.value, ...res];
-  if (searchQuery.value) handleSearchStore(searchQuery.value);
-};
-
-const handleSearchStore = (query: string) => {
-  searchQuery.value = query;
-  if (!query) {
-    filteredStoreList.value = null;
+  if (!listIsInLastPage.value) {
     return;
   }
-  filteredStoreList.value = unref(storeList).filter((store) =>
-    store.name.includes(query)
+  currentPage.value++;
+  const { data, total } = await fetchStores(
+    currentPage.value,
+    unref(searchQuery)
   );
-  if (filteredStoreList.value.length < 4) {
-    getMoreStores();
-  }
+  storeList.value = [...storeList.value, ...data];
+  storesTotal.value = total;
+  findIntersectingElement(storeListElm, ".store-item", getMoreStores);
+};
+
+const handleGetNewSearch = (val: string) => {
+  searchQuery.value = val;
+  getStores(1, val);
 };
 </script>
 
@@ -74,6 +75,16 @@ const handleSearchStore = (query: string) => {
   align-items: center;
   > div {
     width: 100%;
+  }
+  .search-results-count {
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0.2rem 0.8rem;
+    border-radius: 1rem;
+    z-index: 2;
+    position: sticky;
+    top: 0;
+    left: 0;
   }
   .store-list-container {
     display: flex;
